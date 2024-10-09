@@ -7,4 +7,6 @@ test.py
 #excluding the venv for notebooks
 *.venv
 
+#exluding pycache
+*__pycache__/*
 
