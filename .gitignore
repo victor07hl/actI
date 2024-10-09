@@ -1,0 +1,10 @@
+#excluding notebooks
+*.ipynb
+
+#excluding the test file
+test.py
+
+#excluding the venv for notebooks
+*.venv
+
+
