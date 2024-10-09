@@ -44,6 +44,12 @@ class common_processing():
                             )
         return df_
     
+    def clean_floats(self,row_float):
+        try:
+            return row_float.replace(',','.')
+        except:
+            return row_float
+    
     def remove_long_spaces(self,row_string):
         try:
             return re.sub(r'\s+',' ',row_string).strip()
@@ -63,10 +69,14 @@ class Terrazas(common_processing):
     def process_all(self):
         df = self.load_file(path=self.path,sep=';',encoding='iso8859_2')
         df_cleaned = self.rows_filtered(df=df, threshold=0.5)
-        df_cleaned['Superficie_ES'] = (df_cleaned['Superficie_ES']
-                                       .apply(lambda x: x.replace(',','.'))
-                                       .astype(float)
-                                        )
+        superficie_cols = ['Superficie_ES','Superficie_RA']
+        for col_ in superficie_cols:
+            df_cleaned[col_] = (df_cleaned[col_]
+                                            .apply(self.clean_floats)
+                                            .astype(float)
+                                                )
+
+        df_cleaned['Superficie_TO'] = df_cleaned['Superficie_ES'] + df_cleaned['Superficie_RA']
         df_with_div = self.divide_cols(df_cleaned,'Terrazas_Normalizadas','Superficie_ES','id_terraza')
         return df_with_div
     

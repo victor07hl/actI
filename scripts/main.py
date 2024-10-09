@@ -14,7 +14,7 @@ my_orchestrator.process_in_batch(files=files_to_process)
 df_terr = pd.read_csv('../output/Terrazas_Normalizadas.csv')
 df_lic = pd.read_csv('../output/Licencias_SinDuplicados.csv')
 df_joined = my_orchestrator.join_2_datasets(df_terr,df_lic)
-df_joined.to_csv('../output/Licencias_Terrazas_Integradas.csv')
+df_joined.to_csv('../output/Licencias_Terrazas_Integradas.csv',index=False)
 
 #Calculo area superficie 
 #Se calcula utilizando la columna Superficie_Es de el archivo de terrazas
