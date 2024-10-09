@@ -10,3 +10,6 @@ test.py
 #exluding pycache
 *__pycache__/*
 
+#.env
+scripts/.env
+
