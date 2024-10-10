@@ -1,0 +1,60 @@
+{
+    "locales": [
+        "id_local",
+        "id_distrito_local",
+        "desc_distrito_local",
+        "coordenada_x_local",
+        "coordenada_y_local",
+        "id_situacion_local",
+        "desc_situacion_local",
+        "secuencial_local_PC"
+    ],
+    "edificio": [
+        "id_ndp_edificio",
+        "id_clase_ndp_edificio",
+        "id_vial_edificio",
+        "clase_vial_edificio",
+        "desc_vial_edificio",
+        "nom_edificio",
+        "num_edificio",
+        "cal_edificio"
+    ],
+    "acceso": [
+        "id_tipo_acceso_local",
+        "desc_tipo_acceso_local",
+        "id_ndp_acceso",
+        "id_clase_ndp_acceso",
+        "id_vial_acceso",
+        "clase_vial_acceso",
+        "desc_vial_acceso",
+        "nom_acceso",
+        "num_acceso",
+        "cal_acceso"
+    ],
+    "agrupacion": [
+        "id_agrupacion",
+        "nombre_agrupacion",
+        "id_tipo_agrup",
+        "desc_tipo_agrup",
+        "id_planta_agrupado",
+        "id_local_agrupado"
+    ],
+    "periodo_situacion": [
+        "id_periodo_terraza",
+        "desc_periodo_terraza",
+        "id_situacion_terraza",
+        "desc_situacion_terraza"
+    ],
+    "licencia": [
+        "ref_licencia",
+        "id_tipo_licencia",
+        "desc_tipo_licencia",
+        "Fecha_Dec_Lic",
+        "id_tipo_situacion_licencia",
+        "desc_tipo_situacion_licencia"
+    ],
+    "barrios": [
+        "id_barrio_local",
+        "desc_barrio_local"
+    ]
+}

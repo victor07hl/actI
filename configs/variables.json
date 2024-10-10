@@ -1,0 +1,13 @@
+{
+    "sources":{"Licencias_locales":"../data/Licencias_Locales_202104.csv",
+               "Terrazas":"../data/Terrazas_202104.csv",
+               "Locales":"../data/Locales_202104.csv",
+               "books":"../data/books.json"},
+               
+    "output":{"Terrazas_Normalizadas":"../output/Terrazas_Normalizadas.csv",
+              "Licencias_SinDuplicados":"../output/Licencias_SinDuplicados.csv",
+              "Licencias_Terrazas_Integradas":"../output/Licencias_Terrazas_Integradas.csv",
+              "Superficies_Agregadas":"../output/Superficies_Agregadas.csv",
+              "Lcoales_Procesado":"../output/Locales_Procesado.csv",
+              "Books_Limpio":"../output/Books_Limpio.csv"}
+}
