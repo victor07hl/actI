@@ -1,9 +1,14 @@
 import pandas as pd
-from connections import connections
+from Connections import connections, sql_management
 import json
 
 #loading the connection for pandas
 cnxn = connections().engine(db='dwh')
+
+#creating database and schema if not exists
+sql_m = sql_management()
+sql_m.create_database(db='dwh')
+sql_m.create_schema('dwh','terrazas')
 
 df = pd.read_csv('../output/Licencias_Terrazas_Integradas.csv')
 

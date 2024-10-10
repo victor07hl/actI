@@ -1,20 +1,32 @@
 from orchestrator import Orchestrator
 import pandas as pd
+import json
+
 
 my_orchestrator = Orchestrator()
-files_to_process = {'../data/Licencias_Locales_202104.csv':'../output/Licencias_SinDuplicados.csv'
-                        ,'../data/Terrazas_202104.csv':'../output/Terrazas_Normalizadas.csv'
-                        ,'../data/Locales_202104.csv':'../output/Locales_Procesado.csv'
-                        ,'../data/books.json':'../output/Books_Limpio.csv'}
+
+#Loading the variables
+with open('../configs/variables.json','r') as file:
+    vars = json.load(file)
+
+all_src = vars['sources']
+all_out = vars['output']
+src_to_proccess = ['Licencias_locales','Terrazas','Locales','books']
+out_to_store = ['Licencias_SinDuplicados','Terrazas_Normalizadas','Lcoales_Procesado','Books_Limpio']
+
+src_to_proccess_paths = [all_src[key] for key in src_to_proccess]
+out_to_store_paths = [all_out[key] for key in out_to_store]
+files_to_process = dict(zip(src_to_proccess_paths,out_to_store_paths))
+
 
 my_orchestrator.process_in_batch(files=files_to_process)
 
 #Data integration
 ## Join entre datasets
-df_terr = pd.read_csv('../output/Terrazas_Normalizadas.csv')
-df_lic = pd.read_csv('../output/Licencias_SinDuplicados.csv')
+df_terr = pd.read_csv(all_out['Terrazas_Normalizadas'])
+df_lic = pd.read_csv(all_out['Licencias_SinDuplicados'])
 df_joined = my_orchestrator.join_2_datasets(df_terr,df_lic)
-df_joined.to_csv('../output/Licencias_Terrazas_Integradas.csv',index=False)
+df_joined.to_csv(all_out['Licencias_Terrazas_Integradas'],index=False)
 
 #Calculo area superficie 
 #Se calcula utilizando la columna Superficie_Es de el archivo de terrazas
@@ -25,4 +37,5 @@ df_superficies_agg = (df_terr
                           .reset_index()
                           .sort_values(by=['superficie_total'],ascending = False)
                           )
-df_superficies_agg.to_csv('../output/Superficies_Agregadas.csv',index=False)
+df_superficies_agg.to_csv(all_out['Superficies_Agregadas'],index=False)
+print('The main.py process has been executed sucessfully!')
