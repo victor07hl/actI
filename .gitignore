@@ -8,7 +8,7 @@ test.py
 *.venv
 
 #exluding pycache
-*__pycache__/*
+scripts/__pycache*
 
 #.env
 scripts/.env
