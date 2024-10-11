@@ -19,3 +19,9 @@ dremio/*
 #excluding .DS_Store
 .DS_Store
 
+#excluding the data
+data/
+
+#excluding outputs
+output/
+
