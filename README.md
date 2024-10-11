@@ -26,3 +26,15 @@ En la carpeta configs estan los archivos de `terrazas_dimensions.json` y `variab
 El archivo encargado de ejecutar todo el proceso es `dwh.py`, es decir, es el unico que se necesita ejecutar para hacer todo el proceso de transformacion y creacion del datawarehouse. 
 
 
+## preprocess.py
+Este archivo contiene todo el procesamiento que se hace a los archivos una vez leidos. Por cada fuente hay una clase la cual tiene una funcion que se llama proccess_all, esta funcion aplica todas las transformaciones solicitadas en la actividad para es fuente en especifico.
+
+## orchestrator.py
+Este archivo junta todos los procesos que se tiene por cada fuente y mediante el metodo de `process_in_batch` se ejecutan todos lso procesos para cada una. Adicional tiene el metodo de `join_2_datasets` el cual hace el join entre terrazas y licencias.
+
+## DataProcess.py
+Este archivo contiene la clase main la cual se encarga como tal de ejecutar cada uno de los metodos de las clases de los archivos `preprocess.py` y `orchestrator.py` para como tal realizar la transformacion de los datos. <br>
+**Nota:** Los tres archivos descritos hasta aqui, estan son clases que necesitan ser instanciadas y ejecutadas 
+
+## dwh.py
+Como se menciono en la seccion de `Ejecucion del Proceso`, este archivo es el que instancia la clase de `main` del archivo DataProcess.py para realizar las diferentes transformaciones en los datos. Adicional hace uso de las clases del archivo de Connections.py para escribir las dimensiones y hechos en el servidor de SQL server.
