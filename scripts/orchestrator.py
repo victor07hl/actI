@@ -34,7 +34,7 @@ class Orchestrator():
         for src_path in list(files.keys()):
             sink_path = files[src_path]
             self.process_one_file(src_path=src_path,sink_path=sink_path)
-        print('All files was processed')
+        print('All datasets were processed Successfully!')
 
     def join_2_datasets(self,df1,df2):
         df1_ = df1.copy()
