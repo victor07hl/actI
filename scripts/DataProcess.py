@@ -41,7 +41,6 @@ class main():
                                 .sort_values(by=['superficie_total'],ascending = False)
                                 )
         df_superficies_agg.to_csv(all_out['Superficies_Agregadas'],index=False)
-        print('All Data was processed successfully!')
 
 if __name__=='__main__':
     load_process = main()
