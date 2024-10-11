@@ -1,6 +1,11 @@
 import pandas as pd
 from Connections import connections, sql_management
 import json
+from DataProcess import main
+
+#Processing the data
+load_process = main()
+load_process.execute_all()
 
 #loading the connection for pandas
 cnxn = connections().engine(db='dwh')
@@ -10,7 +15,13 @@ sql_m = sql_management()
 sql_m.create_database(db='dwh')
 sql_m.create_schema('dwh','terrazas')
 
-df = pd.read_csv('../output/Licencias_Terrazas_Integradas.csv')
+#getting the variables
+with open('../configs/variables.json','r') as file:
+    vars = json.load(file)
+
+all_out = vars['output']
+#df = pd.read_csv('../output/Licencias_Terrazas_Integradas.csv')
+df = pd.read_csv(all_out['Licencias_Terrazas_Integradas'])
 
 #building the fact Table 
 #removing the duplicate columns from Licencias

@@ -16,3 +16,6 @@ scripts/.env
 #excluding the dremio queries
 dremio/*
 
+#excluding .DS_Store
+.DS_Store
+
