@@ -41,8 +41,7 @@ dwh_create = build_dwh()
 dwh_create.write_fact_and_dims(df_selected=df_selected
                                ,tables=dimensions
                                ,db=db
-                               ,sh=sh
-                               ,fact_name='fact_terrazas')
+                               ,sh=sh)
 
 
 

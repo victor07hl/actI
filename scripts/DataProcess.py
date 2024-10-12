@@ -70,10 +70,12 @@ class build_dwh(connections):
             df = df_selected[tbl_col]
             if tbl.startswith('dim'):
                 df_ = df.drop_duplicates().copy()
+                print(f'dimension saved as {tbl}')
             else:
                 df_ = df.copy()
+                
             df_.to_sql(name=tbl,con=cnxn,schema=sh,if_exists='replace')
-            print(tbl,"saved")
+            print(f'fact saved as {tbl}')
 
 if __name__=='__main__':
     load_process = main()
