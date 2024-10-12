@@ -73,9 +73,10 @@ class build_dwh(connections):
                 print(f'dimension saved as {tbl}')
             else:
                 df_ = df.copy()
+                print(f'fact saved as {tbl}')
                 
             df_.to_sql(name=tbl,con=cnxn,schema=sh,if_exists='replace')
-            print(f'fact saved as {tbl}')
+            
 
 if __name__=='__main__':
     load_process = main()
