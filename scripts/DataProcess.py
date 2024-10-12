@@ -61,7 +61,7 @@ class build_dwh(connections):
     def __init__(self):
         super().__init__
     
-    def write_fact_and_dims(self,df_selected,tables,db,sh,fact_name):
+    def write_fact_and_dims(self,df_selected,tables,db,sh):
         #Writing the dimensions
         cnxn = self.engine(db=db)
         dim_agg_cols = []
