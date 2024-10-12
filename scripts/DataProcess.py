@@ -60,24 +60,19 @@ class build_dwh(connections):
     def __init__(self):
         super().__init__
     
-    def write_fact_and_dims(self,df_selected,dimensions,db,sh,fact_name):
+    def write_fact_and_dims(self,df_selected,tables,db,sh,fact_name):
         #Writing the dimensions
         cnxn = self.engine(db=db)
         dim_agg_cols = []
-        for dim in dimensions:
-            dim_col = dimensions[dim]
-            df = df_selected[dim_col]
-            df_ = df.drop_duplicates().copy()
-            dim_name = f"dim_{dim}"
-            df_.to_sql(name=dim_name,con=cnxn,schema=sh,if_exists='replace')
-            [dim_agg_cols.append(col_) for col_ in dim_col if col_.startswith('id')!=True]
-            print(dim_name,"saved")
-        
-        #Writing the Fact Table
-        fact_cols = [fact_col for fact_col in df_selected.columns if fact_col not in dim_agg_cols]
-        df_fact = df_selected[fact_cols]
-        df_fact.to_sql(name=fact_name,con=cnxn,schema=sh,if_exists='replace')
-        print(f'{fact_name} saved')
+        for tbl in tables:
+            tbl_col = tables[tbl]
+            df = df_selected[tbl_col]
+            if tbl.startswith('dim'):
+                df_ = df.drop_duplicates().copy()
+            else:
+                df_ = df.copy()
+            df_.to_sql(name=tbl,con=cnxn,schema=sh,if_exists='replace')
+            print(tbl,"saved")
 
 if __name__=='__main__':
     load_process = main()
