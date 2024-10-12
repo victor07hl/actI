@@ -27,7 +27,9 @@ df = pd.read_csv(all_out['Licencias_Terrazas_Integradas'])
 select_cols = [col for col in df.columns if col.endswith('Licencias')!=True]
 df_selected = df[select_cols]
 #Removing Terrazas from the cols name
-clean_cols = [col_.replace('Terrazas','') for col_ in select_cols]
+#clean_cols = [col_.replace('Terrazas','') for col_ in select_cols]
+clean_cols = [ col_.replace('Terrazas','') if col_.endswith('Terrazas') else col_ for col_ in select_cols]
+
 df_selected.columns = clean_cols
 
 #Loading the dimensions File
@@ -37,7 +39,7 @@ with open('../configs/terrazas_dimensions.json','r') as file:
 #Writing the dimensions
 dwh_create = build_dwh()
 dwh_create.write_fact_and_dims(df_selected=df_selected
-                               ,dimensions=dimensions
+                               ,tables=dimensions
                                ,db=db
                                ,sh=sh
                                ,fact_name='fact_terrazas')
