@@ -68,7 +68,7 @@ class Terrazas(common_processing):
     
     def process_all(self):
         df = self.load_file(path=self.path,sep=';',encoding='iso8859_2')
-        df_cleaned = self.rows_filtered(df=df, threshold=0.5)
+        df_cleaned = self.rows_filtered(df=df, threshold=0.5) #Tarea 1
         superficie_cols = ['Superficie_ES','Superficie_RA']
         for col_ in superficie_cols:
             df_cleaned[col_] = (df_cleaned[col_]

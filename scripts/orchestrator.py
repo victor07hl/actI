@@ -47,8 +47,6 @@ class Orchestrator():
         return df1_.join(df2_.set_index(key),on=key
                          ,lsuffix='Terrazas'
                          ,rsuffix='Licencias'
-                         ,how='inner')
-
-    
+                         ,how='inner')   
 
 
