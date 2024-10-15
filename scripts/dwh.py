@@ -33,7 +33,7 @@ clean_cols = [ col_.replace('Terrazas','') if col_.endswith('Terrazas') else col
 df_selected.columns = clean_cols
 
 #Loading the dimensions File
-with open('../configs/terrazas_dimensions.json','r') as file:
+with open('../configs/Facts_and_dims.json','r') as file:
     dimensions = json.load(file)
 
 #Writing the dimensions
